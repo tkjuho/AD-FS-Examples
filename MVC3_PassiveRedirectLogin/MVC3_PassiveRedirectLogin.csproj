@@ -96,6 +96,7 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="FederationMetadata\2007-06\FederationMetadata.xml" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
@@ -158,7 +159,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>12350</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/MVC3_PassiveRedirectLogin</IISUrl>
+          <IISUrl>https://localhost/MVC3_PassiveRedirectLogin</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
