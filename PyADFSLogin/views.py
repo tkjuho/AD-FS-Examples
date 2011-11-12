@@ -7,40 +7,30 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 import uuid
 
+# The front page
 def hello(request):
     return HttpResponse("Hello world <Br/> <a href='http://localhost:8000/secret'> secret page </a> <br/> Authenticated: " + str(request.user.is_authenticated()))
 
+# secret content
 @login_required
 def secret(request):
     return HttpResponse('<a href="http://localhost:8000/">Front page</a><br/>Secret page')
 
+# This does the actual login...
+# ... and looks ugly
 def do_login(request):
     baseurl = 'https://ADFS-SERVER/adfs/ls/?wa=wsignin1.0'
     wtrealm ='&wtrealm=http%3a%2f%2flocalhost%3a8000%2f'  
     timestamp = datetime.now()
     wct = '&wct='+ str(timestamp.year) +'-'+str(timestamp.month).zfill(2)+'-' + str(timestamp.day).zfill(2)+ 'T'+str(timestamp.hour-2).zfill(2)+'%3a'+str(timestamp.minute).zfill(2)+'%3a'+str(timestamp.second).zfill(2)+'Z'
+    # Constructing the request url
     loginurl = baseurl + wtrealm+wct    
     return redirect(loginurl)
 
+# Handles the response from AD FS (actually now just logs in if anything comes)
 @csrf_exempt
 def SAML_handler(request):     
-     # Enable SAML loggingif needed for debugging
-     # SAML.log(logging.DEBUG, "PySAML.log")
-
-     # The subject of the assertion. Usually an e-mail address or username.
-     #subject = SAML.Subject(request.user.email,"urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress")
-
-     # The authentication statement which is how the person is proving he really is that person. Usually a password.
-     #authStatement = SAML.AuthenticationStatement(subject,"urn:oasis:names:tc:SAML:1.0:am:password",None)
-
-     # Create a conditions timeframe of 5 minutes (period in which assertion is valid)
-     #notBefore = time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime())
-     #notOnOrAfter = time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime(time.time() + 5))
-     #conditions = SAML.Conditions(notBefore, notOnOrAfter)
-
-     # Create the actual assertion
-     #assertion = SAML.Assertion(authStatement, "Test Issuer", conditions)
-     #return HttpResponse(assertion,  mimetype='text/xml')
+     # Unique user created each time
      username = uuid.uuid4().hex[:30]
      try:
         while True:
@@ -48,6 +38,7 @@ def SAML_handler(request):
             username = uuid.uuid4().hex[:30]
      except User.DoesNotExist:
          pass
+     # Aut & login (required order), auth goes to fake authentication
      user = authenticate(username=username, password="")     
      login(request,user)
 
