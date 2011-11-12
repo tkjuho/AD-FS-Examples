@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
 from datetime import datetime
-from django.conf import settings
 
 def hello(request):
     return HttpResponse("Hello world <Br/> <a href='secret'> secret page </a>")
@@ -12,7 +12,7 @@ def secret(request):
     return HttpResponse("Secret page")
 
 def login(request):
-    baseurl = 'https://ADFS_URL/adfs/ls/?wa=wsignin1.0'
+    baseurl = 'https://ADFS_SERVER/adfs/ls/?wa=wsignin1.0'
     wtrealm ='&wtrealm=http%3a%2f%2flocalhost%3a8000%2f'
     #wctx = '&wctx=rm%3d0%26id%3dpassive%26ru%3d%252fPortalApp'
     timestamp = datetime.now()
@@ -20,5 +20,6 @@ def login(request):
     loginurl = baseurl + wtrealm +wct
     return redirect(loginurl)
 
+@csrf_exempt
 def SAML_handler(request):
     return HttpResponse("Got some")
