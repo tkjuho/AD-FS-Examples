@@ -1,14 +1,16 @@
 Example applications using AD FS 2.0 (Active Directory Federation Services)
 
-1. MVC3_PassiveRedirectLogin
+1. dotNet\MVC3_PassiveRedirectLogin
 
 Demonstrates usage of ADFS as identity provider through passive redirect. The term "passive" comes from the fact thatthe application doesn't have to do anything, but the authentication is handled by the Windows Identity Foundation (WIF) and AD FS. 
 
 Try out the example by replacing in web.config all instances of ADFSSERVER with your own AD FS 2.0 server address.
 
-2. PyADFSLogin (In progress)
+2. Python\PyADFSLogin (In progress)
 
 Demonstrates the usage of ADFS 2.0 as identity provider through passive redirect for a Django & Python application.
+
+Try out the example by replacing in views.py the string (baseurl) with ADFS-SERVER with your own AD FS 2.0 server address.
 
 Missing from the Python example:
 - Logout
