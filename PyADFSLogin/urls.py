@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 
-from PyADFSLogin.views import hello, secret, login, SAML_handler
+from PyADFSLogin.views import hello, secret, do_login, SAML_handler
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -20,5 +20,5 @@ urlpatterns = patterns('',
 urlpatterns = patterns('',
                     ('^$', hello),
                     ('^secret/$',  secret),
-                    ('^accounts/login/$',  login),
+                    ('^accounts/login/$',  do_login),
                     ('^SAML/$', SAML_handler))

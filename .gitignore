@@ -2,3 +2,4 @@ MVC3_PassiveRedirectLogin/bin/
 MVC3_PassiveRedirectLogin/obj/
 *.suo
 *.pyc
+tmp
