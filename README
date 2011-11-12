@@ -9,3 +9,16 @@ Try out the example by replacing in web.config all instances of ADFSSERVER with 
 2. PyADFSLogin (In progress)
 
 Demonstrates the usage of ADFS 2.0 as identity provider through passive redirect for a Django & Python application.
+
+Missing from the Python example:
+- Logout
+- Token handling
+- "Real" login
+- Clean up
+
+
+More examples to come:
+- WCF service call & identity delegation
+- Identity federation active mode
+- Examples on Java/Spring, PHP, RoR, etc. platforms
+- Documentation/step-by-step guides of each example
