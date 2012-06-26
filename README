@@ -16,6 +16,7 @@ Missing from the Python example:
 - Logout
 - Token handling
 - "Real" login
+- Validations of the SAML tokens
 - Clean up
 
 
