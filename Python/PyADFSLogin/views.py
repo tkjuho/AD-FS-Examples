@@ -19,7 +19,7 @@ def secret(request):
 # This does the actual login...
 # ... and looks ugly
 def do_login(request):
-    baseurl = 'https://ADFS-SERVER/adfs/ls/?wa=wsignin1.0'
+    baseurl = 'https://dsrv075.accdev.local/adfs/ls/?wa=wsignin1.0'
     wtrealm ='&wtrealm=http%3a%2f%2flocalhost%3a8000%2f'  
     timestamp = datetime.now()
     wct = '&wct='+ str(timestamp.year) +'-'+str(timestamp.month).zfill(2)+'-' + str(timestamp.day).zfill(2)+ 'T'+str(timestamp.hour-2).zfill(2)+'%3a'+str(timestamp.minute).zfill(2)+'%3a'+str(timestamp.second).zfill(2)+'Z'
